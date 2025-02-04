@@ -1,102 +1,110 @@
-#include <iostream>
-#include <string>
-using namespace std;
+#include "Date.h"
 
 // Date class:
 
-class Date
+// default constructor if date is invalid
+Date::Date() : day(1), month(1), year(2023) {}
+
+// create the parameterized constructor containing day, month, and year
+Date::Date(int d, int m, int y)
 {
-// declare three private attributes that are day, month, and year
-private:
-    int day, month, year;
-public:
-    // create the defualt constructor containing day, month, and year
-    Date()
+    // check if date is valid
+    if (setMonth(m) && setYear(y) && setDay(d) )
     {
-        day = 1;
-        month = 1;
-        year = 2023;
-    }
-    // create the parameterized constructor containing day, month, and year
-    Date(int d, int m, int y)
-    {
-        // VALIDATE THE DATE
         day = d;
         month = m;
         year = y;
     }
-    // create the SetDay(int day) method
-    bool setDay(int d)
+    else
     {
+        *this = Date(); // call defualt constructor if the date is invalid
+    }
+}
+
+// create the SetDay(int day) method
+bool Date::setDay(int d)
+{
+    if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+    {
+        if (d > 0 && d < 32)
+        {
+            return true;
+        }
+    }
+    else if (month == 4 || month == 6 || month == 9 || month == 11)
+    {
+        if (d > 0 && d < 31)
+        {
+            return true;
+        }
+    }
+    else if (month == 2)
+    {
+        if (year == 2023)
+        {
+            if (d > 0 && d < 29)
+            {
+                return true;
+            }
+        }
+        else if (year == 2024)
+        {
+            if (d > 0 && d < 30)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+// create the SetMonth(int month) method
+bool Date::setMonth(int m)
+{
+    if (m > 0 && m  < 13)
+    {
+        month = m;
         return true;
     }
-    // create the SetMonth(int month) method
-    bool setMonth(int m)
+    else
     {
+        return false;
+    }
+}
+// create the SetYear(int year) method
+bool Date::setYear(int y)
+{
+    if (y == 2023 || y == 2024)
+    {
+        year = y;
         return true;
     }
-    // create the SetYear(int year) method
-    bool setYear(int y)
-    {
-        return true;
-    }
-    // create the GetDay() method
-    int getDay()
-    {
-        return day;
-    }
-    // create the GetMonth() method
-    int getMonth()
-    {
-        return month;
-    }
-    // create the GetYear() method
-    int getYear()
-    {
-        return year;
-    }
-    // create the ShowDate() method
-    string showDate()
-    {
-        return " ";
-    }
-    // create the AddDays(int days) method
-    void addDays(int d)
-    {
-        
-    }
+    return false;
+}
+// create the GetDay() method
+int Date::getDay()
+{
+    return day;
+}
+// create the GetMonth() method
+int Date::getMonth()
+{
+    return month;
+}
+// create the GetYear() method
+int Date::getYear()
+{
+    return year;
+}
+// create the ShowDate() method
+string Date::showDate()
+{
+    // prints the date and includes a 0 before the month or day if it is less than 10.
+    return (month < 10 ? "0" : "") + to_string(month) + "/" + (day < 10 ? "0" : "") + to_string(day) + "/" + to_string(year);
+}
+// create the AddDays(int days) method
+void Date::addDays(int d)
+{
     
-};
-    
+}
 
-
-        // if any of the parameters are invalid, default date to 1/01/2023
-        
-        // assign parameter to private attribute day
-
-    // create the SetMonth(int month) method
-    
-        // assign parameter to private attribute month
-
-    // create the SetYear(int year) method
-    
-        // assign parameter to private attribute year
-
-    // create the GetDay() method
-
-        // return the private attribute day
-
-    // create the GetMonth() method
-    
-        // return the private attribute month
-
-    // create the GetYear() method
-
-        // return the private attribute year
-
-    // create the ShowDate() method
-
-        // return the attributes day, month, and year as a string
-
-    // create the AddDays(int days) method
-        // add parameter to the private attribute days (adjust month/year if needed)
