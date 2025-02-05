@@ -28,6 +28,7 @@ bool Date::setDay(int d)
     {
         if (d > 0 && d < 32)
         {
+            day = d;
             return true;
         }
     }
@@ -35,6 +36,7 @@ bool Date::setDay(int d)
     {
         if (d > 0 && d < 31)
         {
+            day = d;
             return true;
         }
     }
@@ -44,6 +46,7 @@ bool Date::setDay(int d)
         {
             if (d > 0 && d < 29)
             {
+                day = d;
                 return true;
             }
         }
@@ -51,6 +54,7 @@ bool Date::setDay(int d)
         {
             if (d > 0 && d < 30)
             {
+                day = d;
                 return true;
             }
         }
@@ -61,15 +65,12 @@ bool Date::setDay(int d)
 // create the SetMonth(int month) method
 bool Date::setMonth(int m)
 {
-    if (m > 0 && m  < 13)
+    if (m > 0 && m < 13)
     {
         month = m;
         return true;
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 // create the SetYear(int year) method
 bool Date::setYear(int y)
@@ -82,17 +83,17 @@ bool Date::setYear(int y)
     return false;
 }
 // create the GetDay() method
-int Date::getDay()
+int Date::getDay() const
 {
     return day;
 }
 // create the GetMonth() method
-int Date::getMonth()
+int Date::getMonth() const
 {
     return month;
 }
 // create the GetYear() method
-int Date::getYear()
+int Date::getYear() const
 {
     return year;
 }
@@ -105,6 +106,35 @@ string Date::showDate()
 // create the AddDays(int days) method
 void Date::addDays(int d)
 {
-    
+    const int monthDays[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
+    const int leapYear[12] = {31,29,31,30,31,30,31,31,30,31,30,31};
+    // if adding days gives the month too many days
+    day += d;
+    if (year == 2023)
+    {
+        if (day > monthDays[month-1])
+        {
+            day -= monthDays[month-1];
+            month++;
+            if (month > 12)
+            {
+                month = 1;
+                year++;
+            }
+        }
+    }
+    else
+    {
+        if (day > leapYear[month-1])
+        {
+            day -= leapYear[month-1];
+            month++;
+            if (month > 12)
+            {
+                month = 1;
+                year++;
+            }
+        }
+    }
 }
 

@@ -15,9 +15,9 @@ public:
     bool setDay(int d);
     bool setMonth(int m);
     bool setYear(int y);
-    int getDay();
-    int getMonth();
-    int getYear();
+    int getDay() const ;
+    int getMonth() const ;
+    int getYear() const ;
     string showDate();
     void addDays(int d);
 };
