@@ -17,36 +17,47 @@ int calcDays(Date dateOne, Date dateTwo)
     int daysDiff1 = 0;
     int daysDiff2 = 0;
     // declare one integer variable for difference between dates ; theDifference
-    int theDifference;
+    int theDifference = 0;
     
-    // calculate the days between 1/01/2023 and date1, and store in daysDiff1
-    for (int i = 1 ; i < date1.getMonth(); i++)
+    if (date1.getYear() == 2024)
     {
-        if (date1.getYear() == 2023)
+        daysDiff1 += 365;
+        for (int i = 1 ; i < date1.getMonth(); i++)
         {
-            daysDiff1 += monthDays[i] ;
+            daysDiff1 += leapYear[i - 1] ;
         }
-        else
-        {
-            daysDiff1 += leapYear[i] ;
-        }
+        daysDiff1 += date1.getDay() - 1;
     }
-    daysDiff1 += date1.getDay() - 1;
+    else
+    {
+        for (int i = 1 ; i < date1.getMonth(); i++)
+        {
+            daysDiff1 += monthDays[i - 1] ;
+        }
+        daysDiff1 += date1.getDay() - 1;
+    }
+    
+    
     
     // calculate the days between 1/01/2023 and date2, and store in daysDiff2
-    for (int i = 1 ; i < date2.getMonth(); i++)
+    if (date2.getYear() == 2024)
     {
-        if (date2.getYear() == 2023)
+        daysDiff2 += 365;
+        for (int i = 1 ; i < date2.getMonth(); i++)
         {
-            daysDiff2 += monthDays[i] ;
+            daysDiff2 += leapYear[i - 1] ;
         }
-        else
-        {
-            daysDiff2 += leapYear[i] ;
-        }
+        daysDiff2 += date2.getDay() - 1;
     }
-    daysDiff2 += date2.getDay() - 1;
-
+    else
+    {
+        for (int i = 1 ; i < date2.getMonth(); i++)
+        {
+            daysDiff2 += monthDays[i - 1] ;
+        }
+        daysDiff2 += date2.getDay() - 1;
+    }
+    
     // assign theDifference with the difference between daysDiff1 and daysDiff2
     theDifference = fabs(daysDiff1 - daysDiff2);
     

@@ -80,6 +80,7 @@ int main()
                 Date secondDose(dayVac,monthVac,yearVac);
                 
                 daysBetween = calcDays(dateExposed, secondDose);
+                cout << "TEST: " << daysBetween << endl;
                 
                 // if they were not fully vacinated by time of exposure, then prompt user they need to isolate for 12 days from day of exposure
                 if (daysBetween < 14)
