@@ -1,6 +1,7 @@
-// Kelsey Wessel
-// 1/30/25
-// Problem : Provide students with a self-assessment tool they can use to determine if and for how long they must isolate
+// Name: Kelsey Wessel
+// My Class: CPSC 1020
+// Date: 02/05/2025
+// Desc: This program provides students with a self-assessment tool they can use to determine if and for how long they must isolate
 
 #include <iostream>
 #include <string>
@@ -8,8 +9,6 @@
 #include "Date.h"
 using namespace std;
 
-
-// main:
 int main()
 {
     // declare variable for Covid test result
@@ -40,6 +39,7 @@ int main()
         string exposed;
         cout << "Exposed to positive case: ";
         cin >> exposed;
+        
         // if they were not exposed, then prompt user they do not have to isolate
         if(exposed == "no" || exposed == "No")
         {
@@ -68,7 +68,6 @@ int main()
             }
             else
             {
-                // declare variables for days between exposure and when recived their second dose
                 int daysBetween;
                 
                 string secondVac;
